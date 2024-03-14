@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package acct.v1;
+
+option go_package = "github.com/govinda-attal/simple-vm/specs/go-specs/acct/v1;acctv1";
+
+import "google/protobuf/timestamp.proto";
+
+message Account {
+    string party_id = 1;
+	string id = 2;
+	repeated AccountNumType numbers = 3;
+}
+
+message AccountRec {
+    Account info = 1;
+    AccountStatus status = 2;
+    google.protobuf.Timestamp created_at = 3;
+    google.protobuf.Timestamp updated_at = 4;
+}
+
+message AccountNumType {
+    string type = 1;
+    string num = 2;
+}
+
+enum AccountStatus {
+    ACCOUNT_STATUS_UNSPECIFIED=0;
+    ACCOUNT_STATUS_ACTIVE = 1;
+    ACCOUNT_STATUS_INACTIVE = 2;
+}
+
+message Property {
+    string type = 1;
+    string value = 2; 
+}
+
+message PropertyRec {
+    Property info = 1;
+    google.protobuf.Timestamp in_effect_at = 2;
+    google.protobuf.Timestamp created_at = 3;
+    google.protobuf.Timestamp updated_at = 4;
+}

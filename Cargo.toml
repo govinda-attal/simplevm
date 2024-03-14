@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = [
+    "specs/rust-specs"
+]
+
+[workspace.dependencies]
+bytes = "1.1.0"
+prost = "0.12.3"
+pbjson = "0.6"
+pbjson-types = "0.6"
+serde = "1.0"
+tonic = "0.11"

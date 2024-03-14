@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package txn.v1;
+
+option go_package = "github.com/govinda-attal/simple-vm/specs/go-specs/txn/v1;txnv1";
+
+import "google/protobuf/timestamp.proto";
+
+message Txn {
+    TxnType type = 1; 
+    string code = 2;
+    string id = 3;
+    repeated Unit from = 4;
+    repeated Unit to = 5;
+    map<string, string> metadata = 6;
+}
+
+message TxnRec {
+    Txn info = 1;
+    TxnStatus status = 2;
+    google.protobuf.Timestamp created_at = 3;
+    google.protobuf.Timestamp updated_at = 4;
+}
+
+
+message Unit  {
+	string type = 1;
+	string currency = 2;
+	string amount = 3;
+    map<string, string> metadata = 4;
+}
+
+enum TxnType {
+    TXN_TYPE_UNSPECIFIED=0;
+    TXN_TYPE_STD_INBOUND = 1;
+    TXN_TYPE_STD_OUTBOUND = 2;
+    TXN_TYPE_CUSTOM = 3;
+}
+
+enum TxnStatus {
+    TXN_STATUS_UNSPECIFIED=0;
+    TXN_STATUS_CONFIRMED = 1;
+    TX_STATUS_PENDING = 2;
+    TX_STATUS_REJECTED = 3;
+}
